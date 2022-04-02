@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<title>Employee Detail</title>
+</head>
+<body>
+	<div class="container" id="employee">
+		<h1>{{ title }}</h1>
+		
+		<form
+		  @submit="checkForm"
+		  action=""
+		  method="post"
+		>
+		<p v-if="errors.length">
+			<b>Please correct the following error(s):</b>
+			<ul>
+			  <li v-for="error in errors">{{ error }}</li>
+			</ul>
+		</p>
+		<div class="employee_form">
+			<label for="name">Name
+				<input type="text" class="input-field" id="name" v-model="e_Name" required>
+			</label>
+			<label for="name">DOB
+				<input type="text" class="input-field" id="dob" v-model="e_DOB" required>
+			</label>
+			<label for="name">Current Address
+				<input type="text" class="input-field" id="address" v-model="e_Address" required>
+			</label>
+			<label for="name">Last Company
+				<input type="text" class="input-field" id="l_company" v-model="e_Company">
+			</label>
+			<label for="name">Email
+				<input type="Email" class="input-field" id="email" v-model="e_Email" required>
+			</label>
+			<label for="name">Phone
+				<input type="tel" class="input-field" id="p_number" v-model="e_Phone" required>
+			</label>
+			<input class="e_submit" v-on:click="addEmployee" type="submit" value="Add Employee">
+		</div>
+		</form>
+		
+		<div class="employee_outer" >
+			<ul>
+				<li class="employee_box" 
+				v-for="(employee, index) in employeeList"
+				>
+					<span v-on:click="employeeList.splice(index,1)" class="delete-employee">X</span>
+					<p>
+						<strong>Name:</strong> {{ employee.Name }}<br>
+						<strong>DOB:</strong> {{ employee.DOB }}<br>
+						<strong>Current Address:</strong> {{ employee.Address }}<br>
+						<strong>Last Company:</strong> {{ employee.Company }}<br>
+						<strong>Email:</strong> {{ employee.Email }}<br>
+						<strong>Phone:</strong> {{ employee.Phone }}<br>
+					</p>
+				</li>
+			</ul>
+			<!-- accordion box -->
+			
+		</div>
+		<!-- accordion outer -->
+	</div>
+	<!-- container -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
+
